@@ -1,28 +1,65 @@
-import java.awt.Color;
+import java.awt.Container;
 import java.awt.Font;
-import java.awt.Graphics;
-import javax.swing.JPanel;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
-public class TicTacToeBoard extends JPanel {
+public class TicTacToeBoard extends JFrame {	
 	
-	int titleFontSize = 36;
+	
+	private Container pane;
+	private String currentPlayer;
+	private JButton [][] board;
+	private boolean hasWinner;	
 	
 	public TicTacToeBoard() {
+		super();
+		pane = getContentPane();
+		pane.setLayout(new GridLayout(3, 3));
+		setSize(500, 500);
+		setResizable(false);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setVisible(true);
+		currentPlayer = "x";
+		board = new JButton[3][3];
+		hasWinner = false;
+		initializeBoard();
 		
-		setSize(322, 422);
-		setBackground(Color.WHITE);
+	}	
+	
+	private void initializeBoard() {	
 		
+		for(int i = 0; i < 3; i++) {
+			for(int j = 0; j < 3; j++) {
+				JButton btn = new JButton("");
+				btn.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 100));
+				board[i][j] = btn;
+				btn.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						
+						if(((JButton)e.getSource()).getText().equals("") && hasWinner == false) {
+							btn.setText(currentPlayer);
+							
+						}	
+					
+					}
+					
+				});
+				
+				pane.add(btn);
+				
+			}
+			
+		}		
 		
 	}
 	
-	public void paintComponent(Graphics g) {
-		
-		super.paintComponent(g);	
-		g.setColor(Color.black);
-		//font (font name, font.style, size)
-		g.setFont(new Font("Comic Sans MS", Font.PLAIN, titleFontSize));
-		g.drawString("Dalton's Tic-Tac-Toe", 0,((50 - titleFontSize) /2 + titleFontSize));
-		
-	}
-
 }

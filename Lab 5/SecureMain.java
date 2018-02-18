@@ -1,14 +1,24 @@
-import java.util.Scanner;
+import java.io.IOException;
 
 public class SecureMain {
 
 	public static void main(String[] args) {
 		
-		Scanner scan = new Scanner(System.in);
+		  String linestoCheck = "int x = 0"
+				+ "0x21 0x14 0x8A 0x3E"
+				+ "50134";
 		
-		System.out.println("This program checks to see input is safe. Please enter some input: ");
+		if(linestoCheck.contains("")) {
+			
+			System.out.println("Unsafe");
+			
+		}	
 		
-		
+		if(linestoCheck.contains("")) {
+			
+			System.out.println("Safe");
+			
+		}
 
 	}
 

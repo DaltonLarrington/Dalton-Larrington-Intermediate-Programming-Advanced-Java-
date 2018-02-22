@@ -1,3 +1,5 @@
+import java.awt.Graphics;
+
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
@@ -22,8 +24,8 @@ public class TicTacToeMain {
 		//May need to change size to account for borders and file size
 		frame.setSize(322, 422);			
 		
-		frame.setVisible(true);
+		frame.setVisible(true);		
 		
 	}
-
+	
 }

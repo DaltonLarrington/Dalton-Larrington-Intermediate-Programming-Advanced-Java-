@@ -9,7 +9,7 @@ import java.util.Scanner;
  * and output strings to a .txt file
  */
 
-public class InputStream {
+public class FileStream {
 
 	public static void main(String[] args) {
 		
@@ -24,19 +24,14 @@ public class InputStream {
 			
 		try {
 			
-			PrintWriter writer = new PrintWriter("recipe.txt");
 			// Reads the input from System.out to print to .txt file
-
-			do{
 			System.out.println("Enter an ingredient (Enter a blank line when done): ");
 			str = br.readLine();
 			
 			// Creates the .txt file and closes the program
-			writer.print(str);
-			writer.print("\r\n");
-			}while(!str.equals(""));
+			PrintWriter writer = new PrintWriter("recipe.txt");
+			writer.print(str);							
 			writer.close();
-
 				
 		
 			

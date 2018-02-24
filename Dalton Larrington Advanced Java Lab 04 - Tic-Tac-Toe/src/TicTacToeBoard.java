@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 public class TicTacToeBoard extends JPanel {
 
-	int titleFontSize = 36;
+	int titleFontSize = 20;
 	ArrayList<DrawnX> xList = new ArrayList<DrawnX>();
 	ArrayList<DrawnO> OList = new ArrayList<DrawnO>();
 
@@ -30,6 +30,7 @@ public class TicTacToeBoard extends JPanel {
 
 		super.paintComponent(g);	
 		g.setColor(Color.black);
+		
 		//font (font name, font.style, size)
 		g.setFont(new Font("Comic Sans MS", Font.PLAIN, titleFontSize));
 		
@@ -37,11 +38,16 @@ public class TicTacToeBoard extends JPanel {
 		g.drawString("Dalton's Tic-Tac-Toe", 0,((50 - titleFontSize) /2 + titleFontSize));			
 		g.drawString("Instructions: ", 0,((1080 - titleFontSize) /2 + titleFontSize));
 		
+		//Instructions
+		g.drawString("There are two players who alternate between playing their symbol, X or O", 0,((1150 - titleFontSize) /2 + titleFontSize));
+		g.drawString("One player must get 3 of their symbols in a row to win", 0,((1250 - titleFontSize) /2 + titleFontSize));
+		g.drawString("If there is one box left, and no one has won, that is considered a scratch game.", 0,((1350 - titleFontSize) /2 + titleFontSize));
+		
 		//Board
-		g.drawLine(0, 200, 600, 200);
-		g.drawLine(0, 400, 600, 400);
-		g.drawLine(200, 0, 200, 640);
-		g.drawLine(400, 0, 400, 640);
+		g.drawLine(20, 200, 540, 200);
+		g.drawLine(20, 400, 540, 400);
+		g.drawLine(200, 60, 200, 540);
+		g.drawLine(400, 60, 400, 540);
 		
 		for(TicTacToeBoard.DrawnX thisX : xList) {	
 			

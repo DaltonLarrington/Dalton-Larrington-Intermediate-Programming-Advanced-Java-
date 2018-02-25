@@ -1,12 +1,23 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
 import java.sql.Array;
 import java.util.AbstractList;
 import java.util.ArrayList;
 
+import javax.swing.AbstractButton;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class TicTacToeBoard extends JPanel {
@@ -14,16 +25,46 @@ public class TicTacToeBoard extends JPanel {
 	int titleFontSize = 20;
 	ArrayList<DrawnX> xList = new ArrayList<DrawnX>();
 	ArrayList<DrawnO> OList = new ArrayList<DrawnO>();
+	private JMenuBar menuBar;
+	private JMenu menu;
+	private JMenuItem quit;
 
 	public TicTacToeBoard() {
-
-		setSize(322, 422);
-		setBackground(Color.WHITE);
 		
+		setSize(322, 422);
+		setBackground(Color.WHITE);		
 		Mouse m = new Mouse();
 		addMouseListener(m);
-
-
+		intializeMenuBar();
+		
+	}
+	
+	private void intializeMenuBar() {
+		
+		menuBar = new JMenuBar();
+		menu = new JMenu("Options");		
+	
+		quit = new JMenuItem("Quit");
+		quit.addActionListener(new ActionListener() {
+		
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			
+				System.exit(0);
+			
+		}
+		
+	});	
+	
+	menu.add(quit);
+	menuBar.add(menu);
+	setJMenuBar(menuBar);
+	
+	}
+	
+	private void setJMenuBar(JMenuBar menuBar2) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public void paintComponent(Graphics g) {
@@ -51,11 +92,13 @@ public class TicTacToeBoard extends JPanel {
 		
 		for(TicTacToeBoard.DrawnX thisX : xList) {	
 			
-			g.drawString("X", thisX.xCoord, thisX.yCoord);
+			g.drawString("X", thisX.xCoord, thisX.yCoord);			
 			
-		}
+		}	
 		
-		for(TicTacToeBoard.DrawnO thisX : OList) {
+		for(TicTacToeBoard.DrawnO thisO : OList) {
+			
+			g.drawString("O", thisO.xCoord, thisO.yCoord);
 			
 		}
 		
@@ -65,12 +108,12 @@ public class TicTacToeBoard extends JPanel {
 		g.drawString("X", testX.xCoord, testX.yCoord);
 		g.drawString("O", testO.xCoord, testO.yCoord);
 
-	}
+	}		
 
 	class Mouse implements MouseListener {
 
 		@Override
-		public void mouseClicked(MouseEvent e) {
+		public void mouseClicked(MouseEvent e) {			
 			
 		}
 
@@ -90,8 +133,8 @@ public class TicTacToeBoard extends JPanel {
 		}
 
 		@Override
-		public void mouseReleased(MouseEvent e) {
-			
+		public void mouseReleased(MouseEvent e) {				
+
 			System.out.println(e.getX() + " " + e.getY());
 			DrawnX X = new DrawnX(e.getX()-11, e.getY()+13);
 			xList.add(X);
@@ -132,12 +175,13 @@ public class TicTacToeBoard extends JPanel {
 			this.xCoord = xCoord;
 			this.yCoord = yCoord;
 
-		}		
-
+		}	
 
 	}	
-		
+	
 	}
+		
+	
 
 
 

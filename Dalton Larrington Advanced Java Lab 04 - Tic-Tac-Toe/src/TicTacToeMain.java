@@ -21,7 +21,7 @@ public class TicTacToeMain {
 		frame.add(board);		
 		
 		//May need to change size to account for borders and file size
-		frame.setSize(322, 422);		
+		frame.setSize(800, 800);		
 		
 		frame.setVisible(true);			
 		

@@ -27,6 +27,7 @@ public class TicTacToeBoard extends JPanel {
 	private JMenuBar menuBar;
 	private JMenu menu;
 	private JMenuItem quit;
+	private boolean xTurn;
 
 	public TicTacToeBoard() {
 		
@@ -35,6 +36,13 @@ public class TicTacToeBoard extends JPanel {
 		Mouse m = new Mouse();
 		addMouseListener(m);
 		intializeMenuBar();
+		xTurn = true;
+		
+	}
+	
+	public int[] snap(int xCoord, int yCoord) {
+		
+		
 		
 	}
 	
@@ -121,9 +129,12 @@ public class TicTacToeBoard extends JPanel {
 		DrawnX testX = new DrawnX(200, 200);
 		DrawnO testO = new DrawnO(100, 200);
 
-		g.drawString("X", testX.xCoord, testX.yCoord);
+		/*
+		 g.drawString("X", testX.xCoord, testX.yCoord);
+		
 		g.drawString("O", testO.xCoord, testO.yCoord);
-
+		*/
+		
 	}		
 
 	class Mouse implements MouseListener {
@@ -150,16 +161,27 @@ public class TicTacToeBoard extends JPanel {
 
 		@Override
 		public void mouseReleased(MouseEvent e) {				
-
-			System.out.println(e.getX() + " " + e.getY());
-			DrawnX X = new DrawnX(e.getX()-11, e.getY()+13);
-			xList.add(X);
-			repaint();
 			
-			System.out.println(e.getX() + " " + e.getY());
-			DrawnO O = new DrawnO(e.getX()-11, e.getY()+13);
-			OList.add(O);
-			repaint();				
+			if(xTurn) {
+				
+				System.out.println(e.getX() + " " + e.getY());
+				DrawnX X = new DrawnX(e.getX()-11, e.getY()+13);
+				xList.add(X);
+				repaint();
+				xTurn = false;
+				
+			}
+			
+			else {
+				
+				System.out.println(e.getX() + " " + e.getY());
+				DrawnO O = new DrawnO(e.getX()-11, e.getY()+13);
+				OList.add(O);
+				repaint();
+				xTurn = true;
+								
+			}
+			
 			
 		}
 

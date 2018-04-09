@@ -18,10 +18,10 @@ pst=null;
 rs=null;
 
 // Remember to change the next line with your own environment 
-String url= /dalton
+String url= 
 "jdbc:jtds:sqlserver://acaddb/RJB_GG";
 String id= "sa";
-String pass = "Op4SQLclass";
+String pass = "";
 try{
 
 Class.forName("net.sourceforge.jtds.jdbc.Driver");
@@ -31,7 +31,7 @@ con = java.sql.DriverManager.getConnection(url, id, pass);
 cnfex.printStackTrace();
 
 }
-String sql = "select * from sale";
+String sql = "select * from dbo.PERSONS where FIRSTNAME like '"+request.getParameter("search")+"' or LASTNAME like '"+request.getParameter("search")+"' ";
 try{
 s = con.createStatement();
 rs = s.executeQuery(sql);
@@ -75,6 +75,8 @@ if(con!=null) con.close();
 }
 
 %>
+
+<a href="jsp_index.html">Back</a>
 
 </body>
 </html>

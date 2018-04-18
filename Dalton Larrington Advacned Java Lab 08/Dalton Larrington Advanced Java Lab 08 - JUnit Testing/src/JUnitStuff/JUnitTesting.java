@@ -4,7 +4,7 @@
  * Description: JUnit Testing using multiple methods
  */
 
-package JUnitStuff;
+package junitstuff;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -16,8 +16,8 @@ public class JUnitTesting {
 		JUnitTestingMain jt = new JUnitTestingMain();
 		int x = 1;
 		int y = 5;
-		expected = 6;
-		add = jt.addInts(int x, int y)
+		int expected = 6;
+		int add = jt.addInts(x, y);
 		assertEquals(expected, add);		
 		
 	}
@@ -40,6 +40,18 @@ public class JUnitTesting {
 		Long expected = (long) 8;
 		Long greeting = (long) jt.findLen(x).length();
 		assertEquals(expected, greeting);
+		
+	}
+	
+	@Test
+	public void divXbyY() { 
+		JUnitTestingMain jt = new JUnitTestingMain();
+		int x = 1;
+		int y = 5;
+		int expected = 0;
+		int divide = jt.divXbyY(x, y);
+		assertEquals(expected, divide);
+		
 		
 	}
 	

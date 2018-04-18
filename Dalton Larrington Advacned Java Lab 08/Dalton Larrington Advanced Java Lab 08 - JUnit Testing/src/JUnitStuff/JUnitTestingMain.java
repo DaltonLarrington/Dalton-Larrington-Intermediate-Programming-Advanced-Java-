@@ -4,7 +4,7 @@
  * Description: JUnit Testing using multiple methods
  */
 
-package JUnitStuff;
+package junitstuff;
 
 import org.junit.Test;
 

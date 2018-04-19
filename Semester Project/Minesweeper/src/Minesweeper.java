@@ -26,14 +26,29 @@ public class Minesweeper {
     
   } 
 
-  public void hard(){
-    length = 16;
-    width = 30;
-    bombs = 99;
+  public void easy() {
+    length = 8;
+    width = 8;
+    bombs = 10;
     
   }
   
-  public void buildInit(){
+  public void medium() {
+	    length = 16;
+	    width = 16;
+	    bombs = 40;
+	    
+	  }
+  
+  public void hard() {
+	  length = 15;
+	  width = 30;
+	  bombs = 99;
+	  
+	  
+  }
+  
+  public void buildInit() {
     bombCount();
     buildBoard();
     chainReactionSet = new int[key.length][];
@@ -45,7 +60,7 @@ public class Minesweeper {
   }
   
   // Spawns the bombs inside the board
-  public void bombCount(){
+  public void bombCount() {
     key = new int[length][width];
     for(int i = 0; i< bombs; i++){
       key[box.nextInt(length)][box.nextInt(width)] = 9;

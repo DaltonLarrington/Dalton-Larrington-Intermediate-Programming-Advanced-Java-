@@ -15,19 +15,19 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseAdapter;
 
-public class MinesweeprMain extends JFrame{
+public class MinesweeprMain extends JFrame {
   protected Minesweeper object; 
   private JPanel layout; 
   private JPanel menu; 
   private JPanel top, bottom; 
-
   private ImageIcon cover;
-
-  private JButton hard; 
+  private JButton easy; 
+  private JButton medium;
+  private JButton hard;
   private JButton menuReturn;
   private JLabel text, image, difficulty;
   
-  public static void main(String[] args){	  
+  public static void main(String[] args) {	  
     MinesweeprMain mine = new MinesweeprMain();
     
   }
@@ -38,9 +38,9 @@ public class MinesweeprMain extends JFrame{
     
   }
  
-  public void menuOpener(){ 
+  public void menuOpener() { 
     setTitle("Minesweeper");
-    setSize(300,400);
+    setSize(300, 400);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setResizable(false);
 
@@ -50,29 +50,70 @@ public class MinesweeprMain extends JFrame{
     text = new JLabel();
     text.setText("Minesweeper");
     text.setAlignmentX(Component.CENTER_ALIGNMENT);   
+    
+    cover = new ImageIcon("logo.png");
+    image = new JLabel(cover);
+    image.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-    hard = new JButton();
-    hard.setText("Hard");
-    hard.addMouseListener(new MouseAdapter() {
+    easy = new JButton();
+    easy.setText("Easy");
+    easy.addMouseListener(new MouseAdapter() {
     	
       public void mouseClicked(MouseEvent e) {
-        object.hard();
-        object.buildInit();
-        setSize(1000,1000);
+        object.easy();
+        object.buildInit();        
         difficulty = new JLabel();
-        difficulty.setText("HARD Mode: Minesweeper");
+        difficulty.setText("Easy Difficulty - Minesweeper");
         buildGui();
         
       }
       
-    });    
+    }); 
     
-    menu.add(text);    
-    menu.add(hard);
-
-    add(menu);
-
-    setVisible(true);
+    easy.setAlignmentX(Component.CENTER_ALIGNMENT);
+    
+    medium = new JButton();
+    medium.setText("Medium");
+    medium.addMouseListener(new MouseAdapter() {
+    	public void mouseClicked(MouseEvent e) {
+    		object.medium();
+    		object.buildInit();
+    		setSize(400, 400);
+    		difficulty = new JLabel();
+    		difficulty.setText("Medium Difficulty - Minesweeper");
+    		buildGui();
+    		    		
+    	}    	
+    	
+    	
+    });
+    
+    medium.setAlignmentX(Component.CENTER_ALIGNMENT);
+    
+   hard = new JButton();
+   hard.setText("Hard");
+   hard.addMouseListener(new MouseAdapter() {	   
+	   public void mouseClicked(MouseEvent e) {
+		   object.hard();
+		   object.buildInit();
+		   setSize(1000, 1000);
+		   difficulty = new JLabel();
+		   difficulty.setText("Hard Difficulty - Minesweeper");
+		   buildGui();
+		   
+	   }
+	   
+   });
+   
+   hard.setAlignmentX(Component.CENTER_ALIGNMENT);
+   
+   menu.add(text);
+   menu.add(easy);
+   menu.add(medium);
+   menu.add(hard);
+   
+   add(menu);
+   setVisible(true);
     
   }
   
@@ -97,10 +138,7 @@ public class MinesweeprMain extends JFrame{
       
     }); 
 
-
-
     bottom.add(menuReturn);
-
 
     layout.add(object.board, BorderLayout.CENTER);
     layout.add(top, BorderLayout.NORTH);

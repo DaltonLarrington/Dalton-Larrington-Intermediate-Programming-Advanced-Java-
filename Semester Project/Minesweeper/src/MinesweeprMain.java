@@ -3,16 +3,22 @@
  * Date: 3-25-2018
  * Description: Minesweeper Game
  */
+import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Color;
+
 import javax.swing.BoxLayout;
+import javax.lang.model.type.ArrayType;
 import javax.swing.*;
 import java.awt.Image;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.lang.reflect.Array;
 import java.awt.event.MouseAdapter;
 
 public class MinesweeprMain extends JFrame {
@@ -25,6 +31,7 @@ public class MinesweeprMain extends JFrame {
   private JButton medium;
   private JButton hard;
   private JButton menuReturn;
+  private ArrayType button;
   private JLabel text, image, difficulty;
   
   public static void main(String[] args) {	  
@@ -96,7 +103,7 @@ public class MinesweeprMain extends JFrame {
 	   public void mouseClicked(MouseEvent e) {
 		   object.hard();
 		   object.buildInit();
-		   setSize(1000, 1000);
+		   setSize(700, 700);
 		   difficulty = new JLabel();
 		   difficulty.setText("Hard Difficulty - Minesweeper");
 		   buildGui();
@@ -146,6 +153,38 @@ public class MinesweeprMain extends JFrame {
     add(layout);
     validate();
     
+  }
+  
+  public void mouseClicked(MouseEvent arg0) {
+	  
+	  for (int a = 0; a < button.length; a++) {
+		  button[a][b] = new JButton("");
+		  button[a][b].addActionListener(this);
+		  final int finalB = b;
+		  final int finalA = a;
+		  button[a][b].addMouseListener(new MouseAdapter() {
+			  
+			  @Override
+			  public void mousePressed (MouseEvent e) {
+				  if (SwingUtilities.isRightMouseButton(e)) {
+					  mineFlagger(true, finalA, finalB);					  
+					  
+				  }				  
+				  
+			  }
+			  
+		  });
+		  
+		  layout.add(button[a][b]);
+		  
+	  }
+	  
+  }
+  
+  public void mineFlagger (boolean flag, int x, int y) {
+	  button[x][y].setText("F");
+	  
+	  
   }
 
 }

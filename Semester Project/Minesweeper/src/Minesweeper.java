@@ -29,7 +29,7 @@ public class Minesweeper {
   public void easy() {
     length = 8;
     width = 8;
-    bombs = 10;
+    bombs = 8;
     
   }
   
@@ -62,7 +62,7 @@ public class Minesweeper {
   // Spawns the bombs inside the board
   public void bombCount() {
     key = new int[length][width];
-    for(int i = 0; i< bombs; i++){
+    for(int i = 0; i < bombs; i++){
       key[box.nextInt(length)][box.nextInt(width)] = 9;
       
     }
@@ -173,11 +173,11 @@ public class Minesweeper {
     
   }
 
-  // Method that causes multiple buttons to become exposed given a specific condition
+  // Method that causes multiple buttons to become exposed if the surrounding buttons are 0. 8 buttons are exposed with each 0.
   public void chainReaction(int col, int row) {
     chainReactionSet[col][row] = -2;
     if(key[col][row] != 0) {
-      array[col][row].updateNum(key[col][row]);
+      array[col][row].updateBoard(key[col][row]);
       array[col][row].isEnabled = false;
       array[col][row].isNumbered = true;
       
@@ -246,7 +246,7 @@ public class Minesweeper {
         }
         
         else {
-          array[i][a].updateNum(key[i][a]);
+          array[i][a].updateBoard(key[i][a]);
           
         }
         

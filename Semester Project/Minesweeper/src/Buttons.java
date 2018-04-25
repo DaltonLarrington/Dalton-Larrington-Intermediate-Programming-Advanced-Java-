@@ -10,8 +10,9 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseAdapter;
 import java.awt.Insets;
 
-public class Buttons{ 
-  protected int status, col,row; //status records the current STATUS OF THE CELL
+public class Buttons { 
+	
+  protected int status, col,row; 
   protected JButton button;
   private Minesweeper mine;
   protected boolean isEnabled;
@@ -20,7 +21,7 @@ public class Buttons{
   protected boolean isNumbered;
   protected boolean isBlank;
   
-  public Buttons(int i,int a, Minesweeper mine) {
+  public Buttons(int i, int a, Minesweeper mine) {
     isEnabled = true;
     isFlagged = false;
     isBlank = false;
@@ -32,26 +33,34 @@ public class Buttons{
     button = new JButton();   
     button.addMouseListener(new MouseAdapter() {
     	
+    // Detects a left click on the buttons
       public void mouseClicked(MouseEvent e) {
         if(e.getButton() == MouseEvent.BUTTON1) {
-          if(isEnabled){
-            if(mine.userArray[col][row] == 10){}
-            else if(mine.key[col][row] == 9){
+          if(isEnabled) {
+            if(mine.userArray[col][row] == 10){    
+            	
+            }    
+            
+            // Determines if the player loses
+            else
+            	if(mine.key[col][row] == 9){
               mine.userArray[col][row] = 13;
               changeIcon(13);
               mine.lost();
               
             }
             
+            // Updates the board to create a chain reaction if the button is 0
             else if(mine.key[col][row] == 0) {
               mine.chainReaction(col,row);
 
             }
 
+            // Updates the buttons
             else {
-              if(isEnabled){
+              if(isEnabled) {
                 mine.userArray[col][row] = mine.key[col][row];
-                updateNum(mine.key[i][a]);
+                updateBoard(mine.key[i][a]);
                 isEnabled = false;
                 isNumbered = true;
                 
@@ -59,23 +68,25 @@ public class Buttons{
 
             }
             
+            // Updates the bomb count
             mine.bombCount();
             
           }
 
-        }
+        }        
         
+        // Will check for a right click and refresh the board to a new board
         else if(e.getButton() == MouseEvent.BUTTON3) {
           if(isEnabled) {
-            if(mine.userArray[col][row] == 10){
+            if(mine.userArray[col][row] == 10) {
               mine.userArray[col][row] = 14;
               status = 14;
               changeIcon(14);
               isFlagged = false;
               
-            }
+            }            
             
-            else if(mine.userArray[col][row] == 14 ){
+            else if(mine.userArray[col][row] == 14 ) {
               mine.userArray[col][row] = 10;
               status = 10;
               changeIcon(10);
@@ -83,6 +94,7 @@ public class Buttons{
               
             }
             
+            // Updates bomb count
             mine.bombCount();
             
           }
@@ -95,7 +107,8 @@ public class Buttons{
 
   }
   
-  public void updateNum(int num) {
+  // Updates the board 
+  public void updateBoard(int num) {
     status = num;
     button.setIcon(null);
     String text = Integer.toString(num);
@@ -109,10 +122,11 @@ public class Buttons{
     
   }
   
+  // Changes the icon of the button depending on what number the button is
   public void changeIcon(int img) { 
     status = img;
-    String directory = "../img/" + status + "box.png";
-    ImageIcon box = new ImageIcon(directory);
+    String image = status + "box.png";
+    ImageIcon box = new ImageIcon(image);
 
 
     button.setIcon(box);

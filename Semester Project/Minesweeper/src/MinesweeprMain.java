@@ -64,11 +64,11 @@ public class MinesweeprMain extends JFrame {
 
     easy = new JButton();
     easy.setText("Easy");
-    easy.addMouseListener(new MouseAdapter() {
-    	
+    easy.addMouseListener(new MouseAdapter() {    	
       public void mouseClicked(MouseEvent e) {
         object.easy();
-        object.buildInit();        
+        object.buildInit(); 
+        setSize(400, 400);
         difficulty = new JLabel();
         difficulty.setText("Easy Difficulty - Minesweeper");
         buildGui();
@@ -103,7 +103,7 @@ public class MinesweeprMain extends JFrame {
 	   public void mouseClicked(MouseEvent e) {
 		   object.hard();
 		   object.buildInit();
-		   setSize(700, 700);
+		   setSize(500, 500);
 		   difficulty = new JLabel();
 		   difficulty.setText("Hard Difficulty - Minesweeper");
 		   buildGui();
@@ -124,6 +124,7 @@ public class MinesweeprMain extends JFrame {
     
   }
   
+  // Builds all screens and GUIs
   public void buildGui() {
     getContentPane().removeAll();
     getContentPane().repaint();
@@ -154,7 +155,8 @@ public class MinesweeprMain extends JFrame {
     validate();
     
   }
-  
+ 
+  /*
   public void mouseClicked(MouseEvent arg0) {
 	  
 	  for (int a = 0; a < button.length; a++) {
@@ -178,7 +180,8 @@ public class MinesweeprMain extends JFrame {
 		  layout.add(button[a][b]);
 		  
 	  }
-	  
+
+  
   }
   
   public void mineFlagger (boolean flag, int x, int y) {
@@ -186,5 +189,7 @@ public class MinesweeprMain extends JFrame {
 	  
 	  
   }
+  
+ */
 
 }

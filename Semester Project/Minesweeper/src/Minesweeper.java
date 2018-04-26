@@ -38,7 +38,7 @@ public class Minesweeper {
 	    width = 16;
 	    bombs = 40;
 	    
-	  }
+  }
   
   public void hard() {
 	  length = 15;
@@ -48,21 +48,25 @@ public class Minesweeper {
 	  
   }
   
+  // Builds the board with chain reaction sets given the specified length of the board
   public void buildInit() {
     bombCount();
     buildBoard();
     chainReactionSet = new int[key.length][];
-    for(int i = 0; i < key.length; i++){
+    for(int i = 0; i < key.length; i++) 
+    	
+    {
+    	
       chainReactionSet[i] = key[i].clone();
       
     }
     
   }
   
-  // Spawns the bombs inside the board
+  // Spawns the bombs inside the board given the specified bomb count
   public void bombCount() {
     key = new int[length][width];
-    for(int i = 0; i < bombs; i++){
+    for(int i = 0; i < bombs; i++) {
       key[box.nextInt(length)][box.nextInt(width)] = 9;
       
     }
@@ -73,18 +77,18 @@ public class Minesweeper {
     
   }
   
-  // Method will check the condition of the win and if the the correct amount of bombs are flagged
+  // Method will check the condition of the win and if the the correct amount of bombs are flagged (Flagging system not working)
   public void playerWin() {    
     boolean isWin = true;
-    for(int i = 0 ; i < userArray.length; i ++){
-      for(int a = 0 ; a < userArray[0].length; a++){
-        if(array[i][a].isMine == true && array[i][a].isFlagged == false){
+    for(int i = 0 ; i < userArray.length; i ++) {
+      for(int a = 0 ; a < userArray[0].length; a++) {
+        if(array[i][a].isMine == true && array[i][a].isFlagged == false) {
           isWin = false;
 
         }
 
-        else if(array[i][a].isFlagged == false && array[i][a].isEnabled == true){
-          isWin = false;
+        else if(array[i][a].isFlagged == false && array[i][a].isEnabled == true) {
+          isWin = true;
 
         }
         
@@ -100,9 +104,9 @@ public class Minesweeper {
   }
   
   // Determines when the user wins
-  public void win(){
-    for(int i = 0; i < key.length; i++){
-      for(int a = 0; a < key[0].length; a++){
+  public void win() {
+    for(int i = 0; i < key.length; i++) {
+      for(int a = 0; a < key[0].length; a++) {
         array[i][a].isEnabled = false;
         
       }
@@ -114,17 +118,20 @@ public class Minesweeper {
   }
 
   // Generates the numbers within the board
-  private void numberBoard(){
-    for (int i = 0; i < key.length; i++){
-      for (int a = 0; a < key[0].length; a++){      
-        if (key[i][a] == 0){
+  private void numberBoard() {
+    for (int i = 0; i < key.length; i++) {
+      for (int a = 0; a < key[0].length; a++) {      
+        if (key[i][a] == 0) {
           int count = 0;         
-          for (int x = -1; x < 2; x++){
-            for (int y = -1; y < 2; y++){             
+          for (int x = -1; x < 2; x++) {
+            for (int y = -1; y < 2; y++) {             
               int testX = i + x;
               int testY = a + y;             
               if ((testX >= 0 && testX < length) && (testY >= 0 && testY < width)) {           
-                if (key[testX][testY] == 9){count++;}
+                if (key[testX][testY] == 9) {               	
+                	count++;
+                
+                }
 
               }
               
@@ -142,6 +149,7 @@ public class Minesweeper {
     
   }
 
+  // Generates the random board
   private void genUserArray() {
     userArray = new int[length][width];
     for(int i = 0; i < userArray.length; i++) {
@@ -162,7 +170,8 @@ public class Minesweeper {
       for(int a =0 ; a < userArray[0].length; a++) {
         array[i][a] = new Buttons(i,a,this);
         array[i][a].changeIcon(userArray[i][a]);
-        if(key[i][a] == 9){array[i][a].isMine = true;}       
+        if(key[i][a] == 9) {        	
+        	array[i][a].isMine = true;}       
         board.add(array[i][a].button);
         
       }
@@ -173,7 +182,7 @@ public class Minesweeper {
     
   }
 
-  // Method that causes multiple buttons to become exposed if the surrounding buttons are 0. 8 buttons are exposed with each 0.
+  // Causes multiple buttons to become exposed if the surrounding buttons are 0. 8 buttons are exposed with each 0.
   public void chainReaction(int col, int row) {
     chainReactionSet[col][row] = -2;
     if(key[col][row] != 0) {

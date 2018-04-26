@@ -56,12 +56,8 @@ public class MinesweeprMain extends JFrame {
 
     text = new JLabel();
     text.setText("Minesweeper");
-    text.setAlignmentX(Component.CENTER_ALIGNMENT);   
+    text.setAlignmentX(Component.CENTER_ALIGNMENT); 
     
-    cover = new ImageIcon("logo.png");
-    image = new JLabel(cover);
-    image.setAlignmentX(Component.CENTER_ALIGNMENT);
-
     easy = new JButton();
     easy.setText("Easy");
     easy.addMouseListener(new MouseAdapter() {    	
@@ -124,13 +120,15 @@ public class MinesweeprMain extends JFrame {
     
   }
   
-  // Builds all screens and GUIs
-  public void buildGui() {
+  // Builds all screens and GUIs when buttons are clicked
+  public void buildGui() {	
     getContentPane().removeAll();
     getContentPane().repaint();
     layout = new JPanel(new BorderLayout());   
     top = new JPanel();
     top.add(difficulty);
+    
+    // Creates the return to menu button
     bottom = new JPanel();
     menuReturn = new JButton();
     menuReturn.setText("Return to Menu");

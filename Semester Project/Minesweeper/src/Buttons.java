@@ -22,8 +22,7 @@ public class Buttons {
   protected boolean isBlank;
   
   public Buttons(int i, int a, Minesweeper mine) {
-    isEnabled = true;
-    isFlagged = false;
+    isEnabled = true;    
     isBlank = false;
     col = i;
     row = a;
@@ -41,7 +40,7 @@ public class Buttons {
             	
             }    
             
-            // Determines if the player loses
+            // Determines if the player loses and opens the board to show all buttons
             else
             	if(mine.key[col][row] == 9){
               mine.userArray[col][row] = 13;
@@ -125,7 +124,7 @@ public class Buttons {
   // Changes the icon of the button depending on what number the button is
   public void changeIcon(int img) { 
     status = img;
-    String image = status + "box.png";
+    String image = status + "logo.png";
     ImageIcon box = new ImageIcon(image);
 
 
